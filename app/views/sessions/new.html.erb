@@ -1,0 +1,17 @@
+<main class="container p-5">
+    <h1>Log in</h1>
+    <div class="container">
+    <%= form_with(scope: :session, url: login_path, local: true) do |f| %>
+        <p>
+            <%= f.label :email, class: "form-label" %>
+            <%= f.email_field :email, class: "form-control", placeholder: "Enter a email" %>
+        </p>
+        <p>
+            <%= f.label :password, class: "form-label" %>
+            <%= f.password_field :password, class: "form-control", placeholder: "Enter your password" %>
+        </p>
+        <%= f.submit "Sign In", class: "mb-5 btn btn-primary" %>
+    <% end %>
+    </div>
+    <%= link_to "Return to home", root_path, class: "btn btn-outline-info" %>
+</main>

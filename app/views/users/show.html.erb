@@ -1,0 +1,22 @@
+<main class="container p-5">
+    <h1>Profile page</h1>
+
+    <div class="container d-flex flex-column">
+        <span>Username: <strong><%= @user.username%></strong></span>
+        <span>Email: <strong><%= @user.email%></strong></span>
+    </div>
+
+    <div class="container d-flex flex-column mt-5">
+     <h3>Articles</h3>
+     <%= render 'articles/article'%>
+    </div>
+    
+
+    <div class="mt-5">
+        <%= link_to "Return to Users List", users_path, class: "btn btn-outline-info" %>
+        <% if logged_in? && @user == current_user %>
+            <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-outline-warning" %>  
+            <%= link_to "Delete Profile", user_path(@user), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>  
+        <% end %>
+    </div>  
+</main>

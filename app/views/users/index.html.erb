@@ -1,0 +1,26 @@
+<main class="container p-5">
+    <h1>Users Listing page</h1>
+
+    <% @users.each do |user|%>
+        <div class="card" style="width: 18rem;">
+        <div class="card-header font-italic"><%= pluralize(user.articles.count, "article") %></div>
+            <div class="card-body">
+                <h5 class="card-title"><%=user.username %></h5>
+                <p class="card-text"><%=user.email %></p>
+                <%= link_to "View", user_path(user), class: "btn btn-outline-success" %>
+                <% if logged_in? %>
+                    <% if user == current_user%>
+                        <%= link_to "Edit Profile", edit_user_path(user), class: "btn btn-outline-info" %>  
+                    <% end %>
+                    <% if current_user.admin? %>
+                        <%= link_to "Delete Profile", user_path(user), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>  
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    <% end %> 
+</main>
+
+<div class="flickr_pagination">
+        <%= will_paginate @articles, :container => false %>
+</div>

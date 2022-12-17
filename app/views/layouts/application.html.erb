@@ -28,9 +28,28 @@
           <li class="nav-item">
             <%= link_to "About", about_path, class: "nav-link active" %>
           </li>
-          <li class="nav-item">
+         
+          <% if logged_in? %>
+            <li class="nav-item">
             <%= link_to "Articles", articles_path, class: "nav-link active" %>
-          </li>
+            </li>
+            <li class="nav-item">
+            <%= link_to "Categories", categories_path, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Users", users_path, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Profile [#{ current_user.admin ? "Admin" : current_user.username}]" , user_path(current_user), class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+            <%= link_to 'Log Out', logout_path, class: "nav-link active", data: {turbo_method: :delete}%>
+            </li>
+          <% else %>
+            <li class="nav-item">
+            <%= link_to "Log In", login_path, class: "nav-link active" %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
